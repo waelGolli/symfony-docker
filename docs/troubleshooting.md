@@ -12,7 +12,9 @@ If you have a TLS trust issues, you can copy the self-signed certificate from Ca
     $ docker cp $(docker-compose ps -q caddy):/data/caddy/pki/authorities/local/root.crt /tmp/root.crt && sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain /tmp/root.crt
     # Linux
     $ docker cp $(docker-compose ps -q caddy):/data/caddy/pki/authorities/local/root.crt /usr/local/share/ca-certificates/root.crt && sudo update-ca-certificates
-
+    # windows
+      docker cp CADDY_CONTAINER:/data/caddy/pki/authorities/local/root.crt LOCAL_PATH_ON_MACHINE
+     install the certificate to the Trusted Root Certification Authorities 
 ## HTTPs and Redirects
 
 If Symfony is generating an internal redirect for an `https://` url, but the resulting url is `http://`, you have to uncomment the `TRUSTED_PROXIES` setting in your `.env` file.
